@@ -1,0 +1,9 @@
+---
+php:
+  time_zone: "Asia/Tokyo"
+  memory_limit: 256M
+  post_max_size: 256M
+  upload_max_filesize: 256M
+
+mysql:
+  password: password

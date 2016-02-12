@@ -1,0 +1,1 @@
+Vagrant + Ansibleの自分用ローカル環境の設定ファイル

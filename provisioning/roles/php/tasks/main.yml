@@ -1,0 +1,39 @@
+# PHPをインストール（remi-php56から）
+- name: install php packages
+  yum: name={{ item }} state=latest enablerepo=remi-php56
+  with_items:
+    - php
+    - php-mbstring
+    - php-mysql
+    - php-gd
+  notify:
+    - restart httpd
+  tags: php
+
+# date.timezoneの設定を変更する
+- name: configure php.ini (date.timezone)
+  lineinfile: dest="/etc/php.ini" state=present regexp="^\;date.timezone =$" line="date.timezone = {{ php.time_zone }}" backrefs=yes
+  tags: php
+
+# memory_limitの設定を変更する
+- name: configure php.ini (memory_limit)
+  lineinfile: dest="/etc/php.ini" state=present regexp="^memory_limit =.*$" line="memory_limit = {{ php.memory_limit }}" backrefs=yes
+  tags: php
+
+# post_max_sizeの設定を変更する
+- name: configure php.ini (post_max_size)
+  lineinfile: dest="/etc/php.ini" state=present regexp="^post_max_size =.*$" line="post_max_size = {{ php.post_max_size }}" backrefs=yes
+  tags: php
+
+# upload_max_filesizeの設定を変更する
+- name: configure php.ini (upload_max_filesize)
+  lineinfile: dest="/etc/php.ini" state=present regexp="^upload_max_filesize =.*$" line="upload_max_filesize = {{ php.upload_max_filesize }}" backrefs=yes
+  notify:
+    - restart httpd
+  tags: php
+
+# ApacheのUserを変更しているので
+# PHPのセッションディレクトリの権限ユーザを変更する
+- name: change owner session directory
+  file: path=/var/lib/php/session group=vagrant owner=vagrant
+  tags: common
