@@ -6,6 +6,7 @@
     - php-mbstring
     - php-mysql
     - php-gd
+    - php-xml
   notify:
     - restart httpd
   tags: php
