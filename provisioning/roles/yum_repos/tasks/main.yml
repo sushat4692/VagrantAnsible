@@ -1,7 +1,7 @@
 # epel, RPMForge, remi リポジトリを追加する
 - yum: name={{item}}
   with_items:
-    - http://ftp-srv2.kddilabs.jp/Linux/distributions/fedora/epel/7/x86_64/e/epel-release-7-6.noarch.rpm
+    - http://ftp.jaist.ac.jp/pub/Linux/Fedora/epel//epel-release-latest-7.noarch.rpm
     - http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el7.rf.x86_64.rpm
     - http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
   tags: yum_repos

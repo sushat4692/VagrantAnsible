@@ -5,10 +5,9 @@
     - php
     - php-mbstring
     - php-mysql
+    - php-mysqlnd
     - php-gd
     - php-xml
-  notify:
-    - restart httpd
   tags: php
 
 # date.timezoneの設定を変更する
@@ -29,8 +28,6 @@
 # upload_max_filesizeの設定を変更する
 - name: configure php.ini (upload_max_filesize)
   lineinfile: dest="/etc/php.ini" state=present regexp="^upload_max_filesize =.*$" line="upload_max_filesize = {{ php.upload_max_filesize }}" backrefs=yes
-  notify:
-    - restart httpd
   tags: php
 
 # ApacheのUserを変更しているので

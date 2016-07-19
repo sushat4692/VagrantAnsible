@@ -22,6 +22,9 @@ Vagrant.configure(2) do |config|
     # via: http://blog.shibayu36.org/entry/2013/08/12/090545
     # IPv6とDNSでのネットワーク遅延対策で追記
     config.vm.provider :virtualbox do |vb|
+      vb.customize ["modifyvm", :id, "--cpus", "2"]
+      vb.customize ["modifyvm", :id, "--memory", "1024"]
+      vb.customize ["modifyvm", :id, "--ioapic", "on"]
       vb.customize ["modifyvm", :id, "--natdnsproxy1", "off"]
       vb.customize ["modifyvm", :id, "--natdnshostresolver1", "off"]
     end

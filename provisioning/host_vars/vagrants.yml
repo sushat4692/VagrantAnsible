@@ -6,4 +6,5 @@ php:
   upload_max_filesize: 256M
 
 mysql:
+  host: localhost
   password: password

@@ -10,31 +10,62 @@
 
 # MariaDBを起動
 - name: mariadb is runnning and enabled
-  service: name=mariadb state=running enabled=yes
+  service:
+    name: mariadb
+    state: running
+    enabled: yes
   tags: mariadb
 
 # rootのパスワードを変更する
 - name: update mysql root passwd
-  mysql_user: name=root host={{ item }} password={{ mysql.password }}
+  ignore_errors: true
+  mysql_user:
+    name: root
+    host: "{{ item }}"
+    password: "{{ mysql.password }}"
   with_items:
     - "{{ ansible_hostname }}"
     - 127.0.0.1
     - ::1
-    - localhost
+    - localhost when: ansible_hostname != 'localhost'
   tags: mariadb
 
 # Ansibleから実行できるようにrootユーザへ
 # .my.cnfを追加して認証無しでmysqlコマンドを実行できるようにする
 - name: copy user my.cnf file with root passwd credentials
-  template: src=my.cnf.j2 dest=/root/.my.cnf owner=root group=root mode=0600
+  template:
+    src: my.cnf.j2
+    dest: /root/.my.cnf
+    owner: root
+    group: root
+    mode: 0600
+  tags: mariadb
+
+# rootのパスワードを変更する
+# 1回目でエラーが起きることがあるので
+- name: update mysql root passwd
+  ignore_errors: true
+  mysql_user:
+    name: root
+    host: "{{ item }}"
+    password: "{{ mysql.password }}"
+  with_items:
+    - "{{ ansible_hostname }}"
+    - 127.0.0.1
+    - ::1
+    - localhost when: ansible_hostname != 'localhost'
   tags: mariadb
 
 # 匿名ユーザを削除する
 - name: delete anonymous mysql user
-  mysql_user: name="" state=absent
+  mysql_user:
+    name: ""
+    state: absent
   tags: mariadb
 
 # testデータベースを削除する
 - name: Removes the MySQL test database
-  mysql_db: db=test state=absent
+  mysql_db:
+    db: test
+    state: absent
   tags: mariadb
