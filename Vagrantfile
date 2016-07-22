@@ -1,6 +1,9 @@
 Vagrant.configure(2) do |config|
     # boxファイルもbentoから拝借
     config.vm.box = "bento/centos-7.2"
+    
+    # 共有フォルダの追加
+    config.vm.synced_folder "~/Virtual", "/Virtual"
 
     # via: http://qiita.com/hidekuro/items/a94025956a6fa5d5494f
     # ポート番号は10080 -> 80
