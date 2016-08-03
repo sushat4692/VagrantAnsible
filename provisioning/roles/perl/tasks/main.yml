@@ -1,0 +1,7 @@
+# perlをインストール
+- name: install perl-CGI package
+  yum: name={{ item }} state=latest
+  with_items:
+    - perl-CGI
+    - perl-Digest-MD5
+  tags: perl

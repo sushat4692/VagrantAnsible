@@ -9,6 +9,7 @@
     - yum_repos
     - httpd
     - mariadb
+    - perl
     - php
     - phpmyadmin
     - ready

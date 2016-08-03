@@ -19,6 +19,11 @@
   replace: dest=/etc/httpd/conf/httpd.conf regexp="EnableSendfile on" replace="EnableSendfile off"
   tags: httpd
 
+# ScriptAliasをコメントアウトする
+- name: commentout ScriptAlias
+  replace: dest=/etc/httpd/conf/httpd.conf regexp="ScriptAlias \/cgi-bin\/" replace="# ScriptAlias off \/cgi-bin\/"
+  tags: httpd
+
 # VirtualDocumentRootを追加する
 - name: append virtual conf
   copy: src=virtual.conf dest=/etc/httpd/conf.d/virtual.conf owner=root group=root mode=0644
