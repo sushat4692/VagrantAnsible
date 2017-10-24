@@ -28,8 +28,8 @@ Vagrant.configure(2) do |config|
       vb.customize ["modifyvm", :id, "--cpus", "2"]
       vb.customize ["modifyvm", :id, "--memory", "1024"]
       vb.customize ["modifyvm", :id, "--ioapic", "on"]
-      vb.customize ["modifyvm", :id, "--natdnsproxy1", "off"]
-      vb.customize ["modifyvm", :id, "--natdnshostresolver1", "off"]
+      vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+      vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
     end
 
     # ansible を実行

@@ -69,3 +69,13 @@
     db: test
     state: absent
   tags: mariadb
+
+# server.cnfを上書きする
+- name: Replace server.cnf
+  copy: src=server.cnf dest=/etc/my.cnf.d/server.cnf owner=root group=root mode=0644
+  tags: httpd
+
+# mariadbを起動する
+- name: mariadb is runnning and enabled
+  service: name=httpd state=restarted enabled=yes
+  tags: httpd
