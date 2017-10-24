@@ -1,3 +1,11 @@
+# PHPに必要なパッケージをインストール
+- name: install php packages
+  yum: name={{ item }} state=latest enablerepo=epel
+  with_items:
+    - libtidy
+    - libtidy-devel
+  tags: php
+
 # PHPをインストール（remi-php56から）
 - name: install php packages
   yum: name={{ item }} state=latest enablerepo=remi-php56
