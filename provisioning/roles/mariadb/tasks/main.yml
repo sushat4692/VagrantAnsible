@@ -12,7 +12,7 @@
 - name: mariadb is runnning and enabled
   service:
     name: mariadb
-    state: running
+    state: started
     enabled: yes
   tags: mariadb
 
