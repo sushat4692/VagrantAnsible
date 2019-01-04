@@ -1,1 +1,1 @@
-- include: vagrants.yml
+- import_playbook: vagrants.yml

@@ -1,21 +1,25 @@
 # PHPに必要なパッケージをインストール
 - name: install php packages
-  yum: name={{ item }} state=latest enablerepo=epel
-  with_items:
-    - libtidy
-    - libtidy-devel
+  yum:
+    name:
+      - libtidy
+      - libtidy-devel
+    state: present
+    enablerepo: epel
   tags: php
 
 # PHPをインストール（remi-php56から）
 - name: install php packages
-  yum: name={{ item }} state=latest enablerepo=remi-php56
-  with_items:
-    - php
-    - php-mbstring
-    - php-mysql
-    - php-mysqlnd
-    - php-gd
-    - php-xml
+  yum:
+    name:
+      - php
+      - php-mbstring
+      - php-mysql
+      - php-mysqlnd
+      - php-gd
+      - php-xml
+    state: present
+    enablerepo: remi-php56
   tags: php
 
 # date.timezoneの設定を変更する

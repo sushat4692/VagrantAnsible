@@ -1,11 +1,13 @@
 # MariaDBをインストールする
 # Ansibleから実行できるようにMySQL-pythonもインストール
 - name: install mariadb packages
-  yum: name={{ item }} state=latest enablerepo=remi
-  with_items:
-    - mariadb
-    - mariadb-server
-    - MySQL-python
+  yum:
+    name:
+      - mariadb
+      - mariadb-server
+      - MySQL-python
+    state: present
+    enablerepo: remi
   tags: mariadb
 
 # MariaDBを起動
