@@ -11,5 +11,5 @@
     - mariadb
     - perl
     - php
-    - phpmyadmin
+    # - phpmyadmin
     - ready
