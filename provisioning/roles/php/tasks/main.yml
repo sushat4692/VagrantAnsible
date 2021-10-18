@@ -1,10 +1,11 @@
 # PHPに必要なパッケージをインストール
-- name: install php packages
+- name: install necessary packages for php
   yum:
     name:
       - libtidy
       - libtidy-devel
       - libargon2
+      - libraqm
     state: present
     enablerepo: epel
   tags: php
